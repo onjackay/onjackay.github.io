@@ -24,7 +24,7 @@
 <meta property="og:description" content="27 Def 度量空间$X$中一点$p$是集合$E \subset X$的聚点(condensation point), 若每个$p$的邻域都包含不可数个$E$中的点.    令$E \subset \mathbb{R}^k$, $E$不可数, 令$P$为$E$所有聚点的集合. 证明$P$是完全集且$E \cap P^C$至多可数.    *令$V_n$为$\mathbb{R}^k$的一个可数基,">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-01-12T14:14:18.000Z">
-<meta property="article:modified_time" content="2023-01-12T14:15:23.590Z">
+<meta property="article:modified_time" content="2023-01-12T15:10:35.099Z">
 <meta property="article:author" content="onjackay">
 <meta property="article:tag" content="蒟蒻">
 <meta name="twitter:card" content="summary_large_image">
@@ -69,7 +69,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"onjackay.top","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"onjackay.top","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          565 字
+          588 字
         
       </span>
     
@@ -275,6 +275,7 @@
               <div class="markdown-body">
                 
                 <p>27 <strong>Def</strong> 度量空间$X$中一点$p$是集合$E \subset X$的<em>聚点(condensation point)</em>, 若每个$p$的邻域都包含不可数个$E$中的点.<br>    令$E \subset \mathbb{R}^k$, $E$不可数, 令$P$为$E$所有聚点的集合. 证明$P$是完全集且$E \cap P^C$至多可数.<br>    *令$V_n$为$\mathbb{R}^k$的一个可数基, 令$W$为使得$E \cap V_n$至多可数的$V_n$的并. 下证$P &#x3D; W^C$.<br>    若$x \in P$, 假设$x \in W$, 则$x \in V_n$, 且存在$r&gt;0$使$N_r(x) \subset V_n$, 由于$E \cap V_n$至多可数, 有$E \cap N_r(x)$至多可数, 与$x \in P$矛盾. 若$x \in W$, 类似的可以得到$x \in P^C$. $P &#x3D; W^C$得证. $E \cap P^C$至多可数.<br>    易知$P$是闭集, 下证$P \in P’$. 令$x \in P$, 假设$x \not\in P’$, 则存在$x$的一个邻域$O$, 使得$O \setminus x \subset P^C &#x3D; W$. 从而, $(O \setminus x)\cap E \subset W \cap E$. 由$x \in P$, $(O \setminus x)\cap E$不可数, 而$W \cap E$可数, 矛盾.</p>
+<p>$$<br>    x’’ + x’ + x &#x3D; \sin x<br>$$</p>
 
                 
               </div>
@@ -399,6 +400,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -592,6 +599,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
