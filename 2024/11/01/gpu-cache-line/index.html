@@ -16,19 +16,21 @@
   <meta name="author" content="HaoyunZ">
   <meta name="keywords" content="Usagi,乌萨奇">
   
-    <meta name="description" content="很久没有写文章了, 最近实习结束逐渐变得有时间了, 准备把之前缺的一些方面再好好学一下. 今天就从一个简单的问题开始写起: 如何测量 GPU 的 Cache Line 大小. 这其实是我遇到的一个面试题. 不幸, 我回答的不是很好, 全程被拷打, 惨遭一面挂. 0x00. Prelogue: 什么是 Cache Line在 CPU 或者 GPU 的 Cache 层次结构中, Cache Line">
+    <meta name="description" content="很久没有写文章了, 最近实习结束逐渐变得有时间了, 准备把之前缺的一些方面再好好学一下. 今天就从一个简单的问题开始写起: 如何测量 GPU 的 Cache Line 大小. 这其实是我遇到的一个面试题. 不幸, 我回答的不是很好, 全程被拷打, 惨遭一面挂.  0x00. Prelogue: 什么是 Cache Line在 CPU 或者 GPU 的 Cache 层次结构中, Cache Line">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何测量 GPU Cache Line 大小">
 <meta property="og:url" content="https://onjackay.github.io/2024/11/01/gpu-cache-line/index.html">
 <meta property="og:site_name" content="乌友之乡 - 全球乌萨奇爱好者之家">
-<meta property="og:description" content="很久没有写文章了, 最近实习结束逐渐变得有时间了, 准备把之前缺的一些方面再好好学一下. 今天就从一个简单的问题开始写起: 如何测量 GPU 的 Cache Line 大小. 这其实是我遇到的一个面试题. 不幸, 我回答的不是很好, 全程被拷打, 惨遭一面挂. 0x00. Prelogue: 什么是 Cache Line在 CPU 或者 GPU 的 Cache 层次结构中, Cache Line">
+<meta property="og:description" content="很久没有写文章了, 最近实习结束逐渐变得有时间了, 准备把之前缺的一些方面再好好学一下. 今天就从一个简单的问题开始写起: 如何测量 GPU 的 Cache Line 大小. 这其实是我遇到的一个面试题. 不幸, 我回答的不是很好, 全程被拷打, 惨遭一面挂.  0x00. Prelogue: 什么是 Cache Line在 CPU 或者 GPU 的 Cache 层次结构中, Cache Line">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://onjackay.github.io/2024/11/01/gpu-cache-line/f82cb5d8f6a277707291a7c89c7ced71661598583.png">
 <meta property="article:published_time" content="2024-11-01T09:10:51.000Z">
-<meta property="article:modified_time" content="2024-11-01T12:38:07.810Z">
+<meta property="article:modified_time" content="2024-11-01T12:43:16.198Z">
 <meta property="article:author" content="HaoyunZ">
 <meta property="article:tag" content="GPU">
 <meta property="article:tag" content="system">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://onjackay.github.io/2024/11/01/gpu-cache-line/f82cb5d8f6a277707291a7c89c7ced71661598583.png">
   
   
   
@@ -259,6 +261,7 @@
                 
                 <p>很久没有写文章了, 最近实习结束逐渐变得有时间了, 准备把之前缺的一些方面再好好学一下. 今天就从一个简单的问题开始写起: 如何测量 GPU 的 Cache Line 大小.</p>
 <p>这其实是我遇到的一个面试题. 不幸, 我回答的不是很好, 全程被拷打, 惨遭一面挂.</p>
+<p><img src="/2024/11/01/gpu-cache-line/f82cb5d8f6a277707291a7c89c7ced71661598583.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="0x00-Prelogue-什么是-Cache-Line"><a href="#0x00-Prelogue-什么是-Cache-Line" class="headerlink" title="0x00. Prelogue: 什么是 Cache Line"></a>0x00. Prelogue: 什么是 Cache Line</h2><p>在 CPU 或者 GPU 的 Cache 层次结构中, Cache Line 是 Cache 的最小单位. 当 CPU 或者 GPU 访问一个内存地址时, 会将这个地址所在的 Cache Line 读取到 Cache 中, 以提高后续访问的速度, 利用了局部性原理. 作为最小单位, Cache Line 不会很大, 通常是 32 字节, 64 字节, 128 字节. </p>
 <p>Nvidia GPU 的 Cache 有 L1 Cache 和 L2 Cache. L1 Cache 在 sm 内部, 和 shared memory 共同占用存储: Shared memory 申请的越多, L1 Cache 就会越少. 而 L1 Cache 也主要用于加速 shared memory 的访问. </p>
 <p>L2 Cache 则位于 DRAM 下面, 被所有 sm 共享, 用于加速 global memory 的访问.</p>
